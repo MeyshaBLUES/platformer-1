@@ -1,0 +1,83 @@
+[gd_scene load_steps=6 format=3 uid="uid://cta3f5r1okk88"]
+
+[ext_resource type="Script" uid="uid://bdagpwwxs65fk" path="res://scenes/ui/main_menu.gd" id="1_fe2o3"]
+[ext_resource type="Texture2D" uid="uid://ctlqe6hnx8llk" path="res://assets/sprites/tilemap-backgrounds_packed.png" id="1_sl1te"]
+
+[sub_resource type="SystemFont" id="SystemFont_fe2o3"]
+font_names = PackedStringArray("Fira Sans")
+font_weight = 900
+disable_embedded_bitmaps = false
+keep_rounding_remainders = false
+oversampling = 3.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_1g8jr"]
+font = SubResource("SystemFont_fe2o3")
+font_size = 48
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_1g8jr"]
+font_names = PackedStringArray("")
+
+[node name="MainMenu" type="CanvasLayer"]
+script = ExtResource("1_fe2o3")
+
+[node name="BG" type="TextureRect" parent="."]
+offset_right = 640.0
+offset_bottom = 360.0
+texture = ExtResource("1_sl1te")
+stretch_mode = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="BG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="BG/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "2D PLATFORMER GAME"
+label_settings = SubResource("LabelSettings_1g8jr")
+
+[node name="Play Button" type="Button" parent="BG/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = SubResource("SystemFont_1g8jr")
+theme_override_font_sizes/font_size = 24
+text = "PLAY"
+
+[node name="Settings Button" type="Button" parent="BG/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = SubResource("SystemFont_1g8jr")
+theme_override_font_sizes/font_size = 24
+text = "SETTINGS"
+
+[node name="Quit Button" type="Button" parent="BG/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = SubResource("SystemFont_1g8jr")
+theme_override_font_sizes/font_size = 24
+text = "QUIT"
+
+[connection signal="pressed" from="BG/MarginContainer/VBoxContainer/Play Button" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="BG/MarginContainer/VBoxContainer/Settings Button" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="BG/MarginContainer/VBoxContainer/Quit Button" to="." method="_on_quit_button_pressed"]
